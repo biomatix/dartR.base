@@ -69,19 +69,22 @@ gl.drop.ind <- function(x,
         class(x) <- "dartR"  
         if (verbose>2) {
           cat(warn("Warning: Standard adegenet genlight object encountered. Converted to compatible dartR genlight object\n"))
-          cat(warn("                    Should you wish to convert it back to an adegenet genlight object for later use outside dartR, 
-                 please use function dartR2gl\n"))
+          cat(warn("                    Should you wish to convert it back to an adegenet genlight object for later use outside dartR", 
+                  "                    please use function dartR2gl\n"))
         }
       }
     }
     
    # Function-specific error checking -----------    
     for (case in ind.list) {
-        if (!(case %in% indNames(x))) {
-            cat(warn("  Warning: Listed individual",case,"not present in the dataset -- ignored\n"))
-            ind.list <- ind.list[!(ind.list == case)]
+      if (!(case %in% indNames(x))) {
+        if (verbose >= 2) {
+          cat(warn("  Warning: Listed individual", case, "not present in the dataset -- ignored\n"))
         }
+        ind.list <- ind.list[!(ind.list == case)]
+      }
     }
+    
     if (length(ind.list) == 0) {
         stop(error("Fatal Error: no individuals to drop!\n"))
     }
@@ -101,7 +104,7 @@ gl.drop.ind <- function(x,
     # Delete listed individuals, recalculate relevant locus metadata and remove monomorphic loci
     
     # Remove rows flagged for deletion
-    ind.to.keep <- which(!x$ind.names %in% ind.list)
+    ind.to.keep <- which(!(indNames(x) %in% ind.list))
     x <- x[ind.to.keep,]
 
     # Monomorphic loci may have been created
@@ -132,8 +135,8 @@ gl.drop.ind <- function(x,
     } else {
         if (verbose >= 2) {
             cat(warn("  Locus metrics not recalculated\n"))
-            x <- utils.reset.flags(x, verbose = 0)
         }
+        x <- utils.reset.flags(x, verbose = 0)
     }
     # End block -----------
 	

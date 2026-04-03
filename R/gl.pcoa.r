@@ -409,12 +409,37 @@ gl.pcoa <- function(x,
       p.value <- stats::p.adjust(p.value)
       
       # Creates dataframe with eigenvalues and filter into noisy/structure base on pvalue>alpha
-      df <- data.frame(index,eigenvalues,tw.stat,p.value)
-      idx <- which(p.value>alpha)[1]
-      struc <- df[1:(idx-1),]
-      noise <- df[(idx):length(eigenvalues),]
-      struc$structure <- 'structured'
-      noise$structure <- 'noisy'
+      # df <- data.frame(index,eigenvalues,tw.stat,p.value)
+      # idx <- which(p.value>alpha)[1]
+      # struc <- df[1:(idx-1),]
+      # noise <- df[(idx):length(eigenvalues),]
+      # struc$structure <- 'structured'
+      # noise$structure <- 'noisy'
+      
+      # Creates dataframe with eigenvalues and filter into noisy/structure based on pvalue>alpha
+      df <- data.frame(index, eigenvalues, tw.stat, p.value)
+      
+      # First index that becomes "noise" (p > alpha). If none, then all are structured.
+      idx <- which(p.value > alpha)[1]
+      
+      if (is.na(idx)) {
+        # No p.value > alpha => all dimensions are "structured"
+        struc <- df
+        noise <- df[0, , drop = FALSE]
+      } else if (idx <= 1) {
+        # idx == 1 => no structured axes; all are "noisy"
+        struc <- df[0, , drop = FALSE]
+        noise <- df
+      } else {
+        # Typical split
+        struc <- df[1:(idx - 1), , drop = FALSE]
+        noise <- df[idx:nrow(df),   , drop = FALSE]
+      }
+      
+      # IMPORTANT: assign using row-count to avoid 0-row replacement errors
+      struc$structure <- rep("structured", nrow(struc))
+      noise$structure <- rep("noisy",      nrow(noise))
+      
       
       # Plots eigenvalues
       if(plot){

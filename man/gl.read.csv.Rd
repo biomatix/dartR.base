@@ -15,41 +15,41 @@ gl.read.csv(
 \arguments{
 \item{filename}{Name of the csv file containing the SNP genotypes [required].}
 
-\item{transpose}{If TRUE, rows are loci and columns are individuals
+\item{transpose}{If TRUE, rows are loci and columns are individuals 
 [default FALSE].}
 
-\item{ind.metafile}{Name of the csv file containing the metrics for
+\item{ind.metafile}{Name of the csv file containing the metrics for 
 individuals [optional].}
 
-\item{loc.metafile}{Name of the csv file containing the metrics for
+\item{loc.metafile}{Name of the csv file containing the metrics for 
 loci [optional].}
 
-\item{verbose}{Verbosity: 0, silent or fatal errors; 1, begin and end; 2,
-progress log; 3, progress and results summary; 5, full report
+\item{verbose}{Verbosity: 0, silent or fatal errors; 1, begin and end; 2, 
+progress log; 3, progress and results summary; 5, full report 
 [default 2 or as specified using gl.set.verbosity].}
 }
 \value{
 A genlight object with the SNP data and associated metadata included.
 }
 \description{
-This script takes SNP genotypes from a csv file, combines them with
-individual and locus metrics and creates a genlight object.
-The SNP data need to be in one of two forms. SNPs can be coded 0 for
+This script takes SNP genotypes from a csv file, combines them with 
+individual and locus metrics and creates a genlight object. 
+The SNP data need to be in one of two forms. SNPs can be coded 0 for 
 homozygous reference, 2 for homozygous alternate, 1 for heterozygous, and NA 
-for missing values; or the SNP data can be coded A/A, A/C, C/T, G/A etc,
+for missing values; or the SNP data can be coded A/A, A/C, C/T, G/A etc, 
 and -/- for missing data. In this format, the reference allele is the most 
-frequent allele, as used by DArT. Other formats will throw an error.
-The SNP data need to be individuals as rows, labeled, and loci as columns,
-also labeled. If the orientation is individuals as columns and loci by rows,
- then set transpose=TRUE.
-The individual metrics need to be in a csv file, with headings, with a
- mandatory id column corresponding exactly to the individual identity labels
- provided with the SNP data and in the same order.
-The locus metadata needs to be in a csv file with headings, with a mandatory
-column headed AlleleID corresponding exactly to the locus identity labels
-provided with the SNP data and in the same order.
-Note that the locus metadata will be complemented by calculable statistics
-corresponding to those that would be provided by Diversity Arrays Technology
+frequent allele, as used by DArT. Other formats will throw an error. 
+The SNP data need to be individuals as rows, labeled, and loci as columns, 
+also labeled. If the orientation is individuals as columns and loci by rows, 
+then set transpose=TRUE. 
+The individual metrics need to be in a csv file, with headings, with a 
+mandatory id column corresponding exactly to the individual identity labels 
+provided with the SNP data and in the same order. 
+The locus metadata needs to be in a csv file with headings, with a mandatory 
+column headed AlleleID corresponding exactly to the locus identity labels 
+provided with the SNP data and in the same order. 
+Note that the locus metadata will be complemented by calculable statistics 
+corresponding to those that would be provided by Diversity Arrays Technology 
 (e.g. CallRate).
 }
 \seealso{
@@ -58,12 +58,18 @@ Other io:
 \code{\link{gl.read.dart}()},
 \code{\link{gl.read.fasta}()},
 \code{\link{gl.read.silicodart}()},
+\code{\link{gl.read.vegsnpdb}()},
 \code{\link{gl.save}()},
 \code{\link{gl.write.csv}()},
 \code{\link{utils.read.dart}()}
 }
 \author{
-Custodian: Luis Mijangos -- Post to
-\url{https://groups.google.com/d/forum/dartr}
+Custodian: Luis Mijangos -- Post to 
+\url{https://groups.google.com/d/forum/dartr} 
+# @examples 
+#Taken out, will not build 
+# csv_file <- system.file('extdata','platy_test.csv', package='dartR.data') 
+# ind_metadata <- system.file('extdata','platy_ind.csv', package='dartR.data') 
+# gl <- gl.read.csv(filename = csv_file, ind.metafile = ind_metadata)
 }
 \concept{io}

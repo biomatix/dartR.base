@@ -9,6 +9,10 @@ gl.smearplot(
   plot.display = TRUE,
   ind.labels = FALSE,
   label.size = 10,
+  label.limit = 50,
+  ind.order = NULL,
+  loc.order = NULL,
+  loc.order.decreasing = TRUE,
   group.pop = FALSE,
   plot.theme = NULL,
   plot.colors = NULL,
@@ -25,11 +29,32 @@ gl.smearplot(
 \item{plot.display}{If TRUE, the plot is displayed in the plot window
 [default TRUE].}
 
-\item{ind.labels}{If TRUE, individual IDs are shown [default FALSE].}
+\item{ind.labels}{One of TRUE (show individual IDs), FALSE (numeric ticks),
+or \code{"auto"} (show IDs when \code{nInd(x) <= label.limit}, otherwise
+numeric ticks) [default FALSE].}
 
 \item{label.size}{Size of the individual labels [default 10].}
 
-\item{group.pop}{If ind.labels is TRUE, group by population [default TRUE].}
+\item{label.limit}{Maximum \code{nInd(x)} for which \code{ind.labels = "auto"}
+will display individual IDs [default 50].}
+
+\item{ind.order}{Controls y-axis ordering. One of: \code{NULL} (default
+order, matching prior behaviour); \code{"pop"} (order individuals by
+population without faceting); or a character vector that is a permutation
+of \code{indNames(x)}. When an explicit order is supplied, any accompanying
+dendrogram should be suppressed because its tip order will no longer match.
+[default NULL].}
+
+\item{loc.order}{Controls x-axis ordering. One of: \code{NULL} (retain the
+locus order in \code{x}); the name of a column in
+\code{x@other$loc.metrics} (e.g. \code{"AvgPIC"}, \code{"CallRate"}); a
+character vector that is a permutation of \code{locNames(x)}; or an integer
+permutation of \code{1:nLoc(x)}. [default NULL].}
+
+\item{loc.order.decreasing}{When \code{loc.order} names a locus metric, sort
+in decreasing order if TRUE [default TRUE].}
+
+\item{group.pop}{If TRUE, facet the plot by population [default FALSE].}
 
 \item{plot.theme}{Theme for the plot. See Details for options
 [default NULL].}
@@ -39,13 +64,14 @@ heterozygous, homozygous alternate, and missing value (NA) [default c("#0000FF",
 
 \item{plot.file}{Name for the RDS binary file to save (base name only, exclude extension) [default NULL]}
 
-\item{plot.dir}{Directory to save the plot RDS files [default as specified 
-by the global working directory or tempdir()]#'}
+\item{plot.dir}{Directory to save the plot RDS files [default as specified
+by the global working directory or tempdir()].}
 
-\item{het.only}{If TRUE, show only the heterozygous state [default FALSE]}
+\item{het.only}{If TRUE, show only the heterozygous state (SNP data only)
+[default FALSE].}
 
-\item{legend}{Position of the legend: “left”, “top”, “right”, “bottom” or
-'none' [default = 'bottom'].}
+\item{legend}{Position of the legend: "left", "top", "right", "bottom" or
+"none" [default = "bottom"].}
 
 \item{verbose}{Verbosity: 0, silent or fatal errors; 1, begin and end; 2,
 progress log; 3, progress and results summary; 5, full report
@@ -57,16 +83,29 @@ Returns the ggplot object
 \description{
 Each locus is color coded for scores of 0, 1, 2 and NA for SNP data and 0, 1
 and NA for presence/absence (SilicoDArT) data. Individual labels can be added.
-Plot may become cluttered if ind.labels If there are too many individuals, 
-it is best to use ind.labels = FALSE.
+Plots can become cluttered when there are many individuals. Use
+\code{ind.labels = FALSE} to fall back to numeric ticks, or
+\code{ind.labels = "auto"} to let the function decide based on
+\code{label.limit}.
 
-Works with both SNP data and P/A data (SilicoDArT)
+Individuals can be reordered via \code{ind.order}; note that any
+accompanying dendrogram should not be drawn in that case, as its tip order
+will no longer correspond to the smear plot y-axis. Loci can be reordered
+via \code{loc.order}, including by a named locus metric such as
+\code{"AvgPIC"} or \code{"CallRate"}.
+
+Works with both SNP data and P/A data (SilicoDArT).
 }
 \examples{
 gl.smearplot(testset.gl,ind.labels=FALSE)
 gl.smearplot(testset.gs,ind.labels=FALSE)
 gl.smearplot(testset.gl[1:10,],ind.labels=TRUE)
 gl.smearplot(testset.gs[1:10,],ind.labels=TRUE)
+# Order loci by average PIC (SNP datasets with AvgPIC in loc.metrics):
+# gl.smearplot(testset.gl, loc.order = "AvgPIC")
+# Custom individual order (dendrogram cannot accompany):
+# gl.smearplot(testset.gl[1:10,], ind.labels=TRUE,
+#              ind.order = rev(indNames(testset.gl[1:10,])))
 }
 \seealso{
 Other graphics: 

@@ -146,7 +146,9 @@ values.
 ## Outcome
 
 All 5 approved changes applied on branch `review-gl.allele.freq`
-(base `ddaed27`, upstream/dev), covering findings F1-F5; F6 is INFO/no
+(base `ddaed27`, upstream/dev) and submitted as
+[PR #374](https://github.com/green-striped-gecko/dartR.base/pull/374),
+covering findings F1-F5; F6 is INFO/no
 action. Verification:
 
 - `by = 'popxloc'` (percent TRUE/FALSE, SNP and SilicoDArT) and
@@ -197,6 +199,6 @@ probe record in gl.dist.pop.md — `gl.allele.freq` popxloc feeds
   "coverage_skipped": ["DAT6: no FBM fixture", "Google Group: no browser session"],
   "baseline_test": "tests/testthat/test-gl.allele.freq.R",
   "status": "pr-open",
-  "pr": null
+  "pr": 374
 }
 ```

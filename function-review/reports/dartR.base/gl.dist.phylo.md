@@ -135,7 +135,7 @@ Proposed change: `Author(s): Arthur Georges. Custodian: Arthur Georges -- Post t
 ## Outcome
 
 Applied 2026-09-06 on branch `review-gl.dist.phylo` (base `upstream/dev`
-ddaed27).
+ddaed27); PR #377.
 
 - Changes 1-9 applied to `R/gl.dist.phylo.r`; change 10 not applied (INFO,
   no action per approval).
@@ -224,6 +224,6 @@ Verification (all rerun at the applied state):
     "Google Group / GitHub issue sweep: not searched this pass"
   ],
   "status": "pr-open",
-  "pr": null
+  "pr": 377
 }
 ```

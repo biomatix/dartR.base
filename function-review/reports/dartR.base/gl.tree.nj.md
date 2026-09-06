@@ -264,7 +264,8 @@ to an approved finding; 40 assertions, 0 failures):
   the dist-object result).
 - End-to-end run at verbose = 3 with outgroup + treefile: clean.
 
-PR: green-striped-gecko/dartR.base #TBD (updated in follow-up commit).
+PR: green-striped-gecko/dartR.base #370
+(https://github.com/green-striped-gecko/dartR.base/pull/370).
 
 ```json
 {
@@ -293,6 +294,6 @@ PR: green-striped-gecko/dartR.base #TBD (updated in follow-up commit).
     "labelsize/VRB5 plot rendering: code-inspection only (headless)"
   ],
   "status": "pr-open",
-  "pr": null
+  "pr": 370
 }
 ```

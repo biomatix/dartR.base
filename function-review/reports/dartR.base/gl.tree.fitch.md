@@ -171,8 +171,9 @@ Proposed change: `Author(s): Arthur Georges. Custodian: Arthur Georges -- Post t
 ## Outcome
 
 All 14 approved changes applied on branch `review-gl.tree.fitch`
-(base `ddaed27`, upstream/dev), covering findings F1–F18 and F20; F19 is
-INFO/no action. Verification on this Windows machine with PHYLIP 3.695:
+(base `ddaed27`, upstream/dev) and submitted as
+[PR #371](https://github.com/green-striped-gecko/dartR.base/pull/371),
+covering findings F1–F18 and F20; F19 is INFO/no action. Verification on this Windows machine with PHYLIP 3.695:
 
 - (a) F1: unshimmed end-to-end run completes; RF = 0 to the Phase A pinned
   topology.
@@ -243,6 +244,6 @@ INFO/no action. Verification on this Windows machine with PHYLIP 3.695:
     "bstrap=1000 scale run: runtime; protocol identical by construction"
   ],
   "status": "pr-open",
-  "pr": null
+  "pr": 371
 }
 ```

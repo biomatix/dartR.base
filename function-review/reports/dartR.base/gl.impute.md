@@ -389,6 +389,6 @@ Addendum (found during apply, not applied):
   "approved_by": "Arthur Georges",
   "approved_date": "2026-09-06",
   "status": "pr-open",
-  "pr": null
+  "pr": 373
 }
 ```

@@ -150,7 +150,9 @@ ddaed27 until PRs #315/#316 merge — not re-found, listed for the record):
 ## Outcome
 
 All 5 approved changes applied on branch `review-gl.dist.ind`
-(base `ddaed27`, upstream/dev), covering findings F1-F6; F7 is INFO/no
+(base `ddaed27`, upstream/dev) and submitted as
+[PR #375](https://github.com/green-striped-gecko/dartR.base/pull/375),
+covering findings F1-F6; F7 is INFO/no
 action. The engines (utils.dist.ind.snp, utils.dist.binary) were not
 touched -- their defects ride on the open PRs #315/#316. Verification:
 
@@ -209,6 +211,6 @@ Sorensen through this fix in the combined state.
   "coverage_skipped": ["DAT6: no FBM fixture", "Google Group: no browser session"],
   "baseline_test": "tests/testthat/test-gl.dist.ind.R",
   "status": "pr-open",
-  "pr": null
+  "pr": 375
 }
 ```

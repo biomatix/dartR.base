@@ -236,7 +236,9 @@ is gl.dist.ind's own sorensen coercion (F2).
 ## Outcome
 
 All 7 approved changes applied on branch `review-gl.dist.pop`
-(base `ddaed27`, upstream/dev), covering findings F1, F3-F10 and the
+(base `ddaed27`, upstream/dev) and submitted as
+[PR #376](https://github.com/green-striped-gecko/dartR.base/pull/376),
+covering findings F1, F3-F10 and the
 F11 text parts; F2 is fixed in gl.dist.ind (its change 1, PR #375) and
 F11 is otherwise INFO/no action. For F4 the stop option was chosen (a
 method typo is an error, and the fallback claimed to be fatal without
@@ -307,6 +309,6 @@ Integration probe (branches review-gl.allele.freq + review-gl.dist.ind
   "coverage_skipped": ["DAT6: no FBM fixture", "StAMPP: conversion rejected, dist.genpop used", "Google Group: no browser session"],
   "baseline_test": "tests/testthat/test-gl.dist.pop.R",
   "status": "pr-open",
-  "pr": null
+  "pr": 376
 }
 ```
